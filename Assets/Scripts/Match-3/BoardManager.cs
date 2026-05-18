@@ -66,11 +66,11 @@ public class BoardManager : MonoBehaviour
     {
         if (isBusy) return;
 
-        if (Mouse.current == null) return;
+        if (Pointer.current == null) return;
 
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Pointer.current.press.wasPressedThisFrame)
         {
-            Vector2 screenPosition = Mouse.current.position.ReadValue();
+            Vector2 screenPosition = Pointer.current.position.ReadValue();
 
             Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(
                 new Vector3(screenPosition.x, screenPosition.y, 0f)
