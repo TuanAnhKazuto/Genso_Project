@@ -22,6 +22,12 @@ public class BoardManager : MonoBehaviour
     [SerializeField] private GemView gemPrefab;
     [SerializeField] private List<ElementSpritePair> elementSprites = new();
 
+    [Header("Energy System")]
+    [SerializeField] private ElementEnergySystem alphaEnergySystem;
+
+    [Header("Turn / Swap System")]
+    [SerializeField] private SwapCounterSystem alphaSwapCounter;
+
     [Header("Animation Settings")]
     [SerializeField] private float swapDuration = 0.15f;
     [SerializeField] private float fallDuration = 0.12f;
@@ -191,6 +197,12 @@ public class BoardManager : MonoBehaviour
     {
         if (isBusy || gem == null) return;
 
+        if(alphaEnergySystem != null && !alphaSwapCounter.HasSwapLeft())
+        {
+            Debug.Log("Không thể chọn đá quý. Hết lượt swap.");
+            return;
+        }
+
         if (selectedGem == null)
         {
             selectedGem = gem;
@@ -215,6 +227,108 @@ public class BoardManager : MonoBehaviour
 
             selectedGem = gem;
             selectedGem.SetSelected(true);
+        }
+    }
+
+    private int GetLargestMatchedGroupSize(List<GemView> matches)
+    {
+        HashSet<GemView> matchSet = new HashSet<GemView>(matches);
+        HashSet<GemView> visited = new HashSet<GemView>();
+
+        int largestGroupSize = 0;
+
+        foreach (GemView gem in matches)
+        {
+            if (gem == null) continue;
+            if (visited.Contains(gem)) continue;
+
+            int groupSize = CountConnectedMatchedGroup(gem, matchSet, visited);
+
+            largestGroupSize = Mathf.Max(largestGroupSize, groupSize);
+        }
+
+        Debug.Log($"Largest matched group size: {largestGroupSize}");
+
+        return largestGroupSize;
+    }
+
+    private int CountConnectedMatchedGroup(
+    GemView startGem,
+    HashSet<GemView> matchSet,
+    HashSet<GemView> visited
+)
+    {
+        int count = 0;
+        ElementType targetElement = startGem.Element;
+
+        Queue<GemView> queue = new Queue<GemView>();
+        queue.Enqueue(startGem);
+        visited.Add(startGem);
+
+        while (queue.Count > 0)
+        {
+            GemView current = queue.Dequeue();
+            count++;
+
+            foreach (GemView neighbor in GetMatchedNeighbors(current, matchSet))
+            {
+                if (neighbor == null) continue;
+                if (visited.Contains(neighbor)) continue;
+                if (!neighbor.Element.Equals(targetElement)) continue;
+
+                visited.Add(neighbor);
+                queue.Enqueue(neighbor);
+            }
+        }
+
+        return count;
+    }
+
+    private IEnumerable<GemView> GetMatchedNeighbors(GemView gem, HashSet<GemView> matchSet)
+    {
+        int x = gem.X;
+        int y = gem.Y;
+
+        if (x > 0 && board[x - 1, y] != null && matchSet.Contains(board[x - 1, y]))
+        {
+            yield return board[x - 1, y];
+        }
+
+        if (x < width - 1 && board[x + 1, y] != null && matchSet.Contains(board[x + 1, y]))
+        {
+            yield return board[x + 1, y];
+        }
+
+        if (y > 0 && board[x, y - 1] != null && matchSet.Contains(board[x, y - 1]))
+        {
+            yield return board[x, y - 1];
+        }
+
+        if (y < height - 1 && board[x, y + 1] != null && matchSet.Contains(board[x, y + 1]))
+        {
+            yield return board[x, y + 1];
+        }
+    }
+
+    private void ApplySwapruleByMatchLength(int highestMatchLength)
+    {
+        if(alphaSwapCounter == null)
+        {
+            Debug.LogWarning("Swap Counter System chưa được gán trong BoardManager. Không thể áp dụng quy tắc swap.");
+            return;
+        }
+
+        if(highestMatchLength >= 5)
+        {
+            alphaSwapCounter.AddSwap(2);
+        }
+        else if (highestMatchLength == 4)
+        {
+            alphaSwapCounter.AddSwap(1);
+        }
+        else
+        {
+            Debug.Log("Không có quy tắc swap nào được áp dụng cho lượt swap này.");
         }
     }
 
@@ -244,6 +358,11 @@ public class BoardManager : MonoBehaviour
             isBusy = false;
             yield break;
         }
+
+        alphaSwapCounter?.SpendOneSwap();
+
+        int highestMatchLength = GetLargestMatchedGroupSize(matches);
+        ApplySwapruleByMatchLength(highestMatchLength);
 
         yield return ResolveBoard();
 
@@ -408,12 +527,46 @@ public class BoardManager : MonoBehaviour
 
     private void ClearMatches(List<GemView> matches)
     {
+        Dictionary<ElementType, int> matchedElementCounts = new();
+
+
         foreach (GemView gem in matches)
+        {
+            if (gem == null) continue;
+
+            if (!matchedElementCounts.ContainsKey(gem.Element))
+            {
+                matchedElementCounts.Add(gem.Element, 0);
+            }
+
+            matchedElementCounts[gem.Element]++;
+        }
+
+        GiveEnergyFormMatches(matchedElementCounts);
+
+        foreach(GemView gem in matches)
         {
             if (gem == null) continue;
 
             board[gem.X, gem.Y] = null;
             Destroy(gem.gameObject);
+        }
+    }
+
+    private void GiveEnergyFormMatches(Dictionary<ElementType, int> matchedElementCounts)
+    {
+        if(alphaEnergySystem == null)
+        {
+            Debug.LogWarning("Alpha Energy System chưa được gán trong BoardManager. Không thể cấp năng lượng.");
+            return;
+        }
+
+        foreach(KeyValuePair<ElementType, int> pair in matchedElementCounts)
+        {
+            ElementType element = pair.Key;
+            int amount = pair.Value;
+
+            alphaEnergySystem.AddEnergy(element, amount);
         }
     }
 
