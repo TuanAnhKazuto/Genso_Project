@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,6 +28,9 @@ public class BoardManager : MonoBehaviour
 
     [Header("Turn / Swap System")]
     [SerializeField] private SwapCounterSystem alphaSwapCounter;
+
+    [Header("Turn Manager")]
+    [SerializeField] private TurnManager turnManager;   
 
     [Header("Animation Settings")]
     [SerializeField] private float swapDuration = 0.15f;
@@ -197,7 +201,13 @@ public class BoardManager : MonoBehaviour
     {
         if (isBusy || gem == null) return;
 
-        if(alphaEnergySystem != null && !alphaSwapCounter.HasSwapLeft())
+        if(turnManager != null && !turnManager.CanAlphaSwap())
+        {
+            Debug.Log("Khong the Swap. Hien khong phai Alpha Swap Phase.");
+            return;
+        }
+
+        if (alphaEnergySystem != null && !alphaSwapCounter.HasSwapLeft())
         {
             Debug.Log("Không thể chọn đá quý. Hết lượt swap.");
             return;
