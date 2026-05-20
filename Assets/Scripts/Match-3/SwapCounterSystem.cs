@@ -11,7 +11,7 @@ public class SwapCounterSystem : MonoBehaviour
 
     private void Start()
     {
-        ResetSwapCount();
+        //ResetSwapCount();
     }
 
     private void Update()
@@ -29,7 +29,7 @@ public class SwapCounterSystem : MonoBehaviour
         return currentSwapCount > 0;
     }
 
-    private void ResetSwapCount()
+    public void ResetSwapCount()
     {
         currentSwapCount = baseSwapCount; 
         Debug.Log($"Swap count reset to {currentSwapCount}");

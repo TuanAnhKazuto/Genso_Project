@@ -74,12 +74,12 @@ public static class CreateCSharpScriptHotkey
     private static string GetSelectedFolderPath()
     {
         if (Selection.activeObject == null)
-            return "Assets";
+            return "Assets/Scripts";
 
         string selectedPath = AssetDatabase.GetAssetPath(Selection.activeObject);
 
         if (string.IsNullOrEmpty(selectedPath))
-            return "Assets";
+            return "Assets/Scripts";
 
         if (AssetDatabase.IsValidFolder(selectedPath))
             return selectedPath;
@@ -87,7 +87,7 @@ public static class CreateCSharpScriptHotkey
         string directory = Path.GetDirectoryName(selectedPath);
 
         if (string.IsNullOrEmpty(directory))
-            return "Assets";
+            return "Assets/Scripts";
 
         return directory.Replace("\\", "/");
     }
