@@ -11,7 +11,7 @@ public class ElementEnergyAmount
 
 public class ElementEnergySystem : MonoBehaviour
 {
-    [SerializeField] public List<ElementEnergyAmount> energies = new();
+    public List<ElementEnergyAmount> energies = new();
 
     public event Action<ElementType, int> OnEnergyChanged;
 
@@ -80,7 +80,7 @@ public class ElementEnergySystem : MonoBehaviour
         return true;
     }
 
-    private ElementEnergyAmount FindEnergyData(ElementType element)
+    public ElementEnergyAmount FindEnergyData(ElementType element)
     {
         foreach (ElementEnergyAmount energyData in energies)
         {
