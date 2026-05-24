@@ -1,15 +1,13 @@
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class MarthThreeUI : MonoBehaviour
+public class MacthThreeUI : MonoBehaviour
 {
     [Header("Swap count:")]
     [SerializeField] private SwapCounterSystem swapCounterSystem;
     public TextMeshProUGUI swapCountText;
 
-    [Header("Other UI elements")]
+    [Header("UI elements cost")]
     [SerializeField] private ElementEnergySystem elementEnergySystem;
     [SerializeField] private TextMeshProUGUI metalCostTxt;
     [SerializeField] private TextMeshProUGUI woodCostTxt;
@@ -17,16 +15,22 @@ public class MarthThreeUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI fireCostTxt;
     [SerializeField] private TextMeshProUGUI earthCostTxt;
 
+    [Header("Turn")]
+    [SerializeField] private TurnManager turnManager;
+    [SerializeField] private TextMeshProUGUI curTurnTxt;
+
     private void OnEnable()
     {
         swapCounterSystem.OnSwapCountChanged += UpdateSwapCountText;
         elementEnergySystem.OnEnergyChanged += UpdateElementCostUI;
+        turnManager.OnPhaseChanged += UpdateTurnText;
     }
 
     private void OnDisable()
     {
         swapCounterSystem.OnSwapCountChanged -= UpdateSwapCountText;
         elementEnergySystem.OnEnergyChanged -= UpdateElementCostUI;
+        turnManager.OnPhaseChanged -= UpdateTurnText;
     }
 
     private void UpdateSwapCountText(int newCount)
@@ -36,7 +40,7 @@ public class MarthThreeUI : MonoBehaviour
 
     private void UpdateElementCostUI(ElementType element, int amount)
     {
-        foreach(ElementEnergyAmount energyData in elementEnergySystem.energies)
+        foreach (ElementEnergyAmount energyData in elementEnergySystem.energies)
         {
             switch (energyData.element)
             {
@@ -57,5 +61,10 @@ public class MarthThreeUI : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private void UpdateTurnText(BattleSide side, BattlePhase phase)
+    {
+        curTurnTxt.text = $"Turn: {side} - {phase}";
     }
 }

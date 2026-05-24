@@ -369,12 +369,15 @@ public class BoardManager : MonoBehaviour
             yield break;
         }
 
-        alphaSwapCounter?.SpendOneSwap();
+        int largestGroupSize = GetLargestMatchedGroupSize(matches);
 
-        int highestMatchLength = GetLargestMatchedGroupSize(matches);
-        ApplySwapruleByMatchLength(highestMatchLength);
-
+        // ResolveBoard chạy trước.
+        // EC sẽ được cộng trong ClearMatches().
         yield return ResolveBoard();
+
+        // Sau khi board xử lý xong mới cập nhật swap.
+        // Lúc này nếu swap về 0 thì mới chuyển SkillPhase.
+        alphaSwapCounter?.ApplySwapResultByMatchedGroupSize(largestGroupSize);
 
         isBusy = false;
     }

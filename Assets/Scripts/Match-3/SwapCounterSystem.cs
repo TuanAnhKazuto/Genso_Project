@@ -9,11 +9,6 @@ public class SwapCounterSystem : MonoBehaviour
 
     public event Action<int> OnSwapCountChanged;
 
-    private void Start()
-    {
-        //ResetSwapCount();
-    }
-
     private void Update()
     {
         if(Keyboard.current.spaceKey.wasPressedThisFrame)
@@ -27,6 +22,36 @@ public class SwapCounterSystem : MonoBehaviour
     public bool HasSwapLeft()
     {
         return currentSwapCount > 0;
+    }
+
+    public void ApplySwapResultByMatchedGroupSize(int groupSize)
+    {
+        int oldSwapCount = currentSwapCount;
+        int newSwapCount = currentSwapCount;
+
+        if (groupSize >= 5)
+        {
+            // Luật: tốn 1 swap, được +2 swap => lời 1 swap
+            newSwapCount += 1;
+
+            Debug.Log($"Match >= 5. Swap: {oldSwapCount} -> {newSwapCount}");
+        }
+        else if (groupSize == 4)
+        {
+            // Luật: tốn 1 swap, được +1 swap => không đổi
+            Debug.Log($"Match 4. Swap unchanged: {oldSwapCount}");
+        }
+        else
+        {
+            // Match 3: tốn 1 swap
+            newSwapCount -= 1;
+
+            Debug.Log($"Match 3. Swap: {oldSwapCount} -> {newSwapCount}");
+        }
+
+        currentSwapCount = Mathf.Max(0, newSwapCount);
+
+        OnSwapCountChanged?.Invoke(currentSwapCount);
     }
 
     public void ResetSwapCount()
