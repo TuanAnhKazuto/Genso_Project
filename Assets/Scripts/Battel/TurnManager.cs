@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class TurnManager : MonoBehaviour
 {
+    private static WaitForSeconds _waitForSeconds0_5 = new WaitForSeconds(0.5f);
     [Header("References")]
     [SerializeField] private SwapCounterSystem alphaSwapCounter;
 
@@ -92,7 +93,7 @@ public class TurnManager : MonoBehaviour
 
         SetPhase(BattleSide.Alpha, BattlePhase.EndTurn);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return _waitForSeconds0_5;
 
         yield return OmegaDummyTurnRoutine();
 
