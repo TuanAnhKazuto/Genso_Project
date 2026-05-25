@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class SwapCounterSystem : MonoBehaviour
 {
@@ -79,5 +80,12 @@ public class SwapCounterSystem : MonoBehaviour
         Debug.Log($"Added {amount} swap(s). Total swaps: {currentSwapCount}");
       
         OnSwapCountChanged?.Invoke(currentSwapCount);
+    }
+
+
+    // ======= Không cần quan tâm =========
+    public void ResetAll()
+    {
+        SceneManager.LoadScene(0);
     }
 }

@@ -1,12 +1,8 @@
 using TMPro;
 using UnityEngine;
 
-public class MacthThreeUI : MonoBehaviour
+public class UpdateElementCostUI : MonoBehaviour
 {
-    [Header("Swap count:")]
-    [SerializeField] private SwapCounterSystem swapCounterSystem;
-    public TextMeshProUGUI swapCountText;
-
     [Header("UI elements cost")]
     [SerializeField] private ElementEnergySystem elementEnergySystem;
     [SerializeField] private TextMeshProUGUI metalCostTxt;
@@ -15,31 +11,11 @@ public class MacthThreeUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI fireCostTxt;
     [SerializeField] private TextMeshProUGUI earthCostTxt;
 
-    [Header("Turn")]
-    [SerializeField] private TurnManager turnManager;
-    [SerializeField] private TextMeshProUGUI curTurnTxt;
-
     private void OnEnable()
     {
-        swapCounterSystem.OnSwapCountChanged += UpdateSwapCountText;
-        elementEnergySystem.OnEnergyChanged += UpdateElementCostUI;
-        turnManager.OnPhaseChanged += UpdateTurnText;
-    }
+        elementEnergySystem.OnEnergyChanged += UpdateElementCost;
 
-    private void OnDisable()
-    {
-        swapCounterSystem.OnSwapCountChanged -= UpdateSwapCountText;
-        elementEnergySystem.OnEnergyChanged -= UpdateElementCostUI;
-        turnManager.OnPhaseChanged -= UpdateTurnText;
-    }
 
-    private void UpdateSwapCountText(int newCount)
-    {
-        swapCountText.text = $"Swaps Left: {newCount}";
-    }
-
-    private void UpdateElementCostUI(ElementType element, int amount)
-    {
         foreach (ElementEnergyAmount energyData in elementEnergySystem.energies)
         {
             switch (energyData.element)
@@ -63,8 +39,33 @@ public class MacthThreeUI : MonoBehaviour
         }
     }
 
-    private void UpdateTurnText(BattleSide side, BattlePhase phase)
+    private void OnDisable()
     {
-        curTurnTxt.text = $"Turn: {side} - {phase}";
+        elementEnergySystem.OnEnergyChanged -= UpdateElementCost;
+    }
+
+    private void UpdateElementCost(ElementType element, int amount)
+    {
+        foreach (ElementEnergyAmount energyData in elementEnergySystem.energies)
+        {
+            switch (energyData.element)
+            {
+                case ElementType.Metal:
+                    metalCostTxt.text = $"{energyData.amount}";
+                    break;
+                case ElementType.Wood:
+                    woodCostTxt.text = $"{energyData.amount}";
+                    break;
+                case ElementType.Water:
+                    waterCostTxt.text = $"{energyData.amount}";
+                    break;
+                case ElementType.Fire:
+                    fireCostTxt.text = $"{energyData.amount}";
+                    break;
+                case ElementType.Earth:
+                    earthCostTxt.text = $"{energyData.amount}";
+                    break;
+            }
+        }
     }
 }

@@ -105,8 +105,7 @@ $@"using UnityEngine;
 public class {className} : MonoBehaviour
 {{
     
-}}
-";
+}}";
     }
 }
 #endif
