@@ -8,16 +8,27 @@ public class UpdateCoreHealthUI : MonoBehaviour
 
     private void OnEnable()
     {
-        coreHealth.OnHpChanged += UpdateHpSlider;
+        if (coreHealth != null) coreHealth.OnHpChanged += UpdateHpSlider;
     }
 
     private void OnDisable()
     {
-        coreHealth.OnHpChanged -= UpdateHpSlider;
+        if (coreHealth != null) coreHealth.OnHpChanged -= UpdateHpSlider;
+    }
+
+    private void Start()
+    {
+        if (coreHealth != null)
+        {
+            UpdateHpSlider(coreHealth.Owner, coreHealth.CurrentHp, coreHealth.MaxHp);
+        }
     }
 
     private void UpdateHpSlider(BattleSide side, int currentHp, int maxHp)
     {
+        if (healthSlider == null) return;
+
+        healthSlider.maxValue = maxHp;
         healthSlider.value = currentHp;
     }
 }

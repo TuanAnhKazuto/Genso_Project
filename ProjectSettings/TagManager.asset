@@ -41,5 +41,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Backgroud
+    uniqueID: 3224738977
+    locked: 0
+  - name: Skill
+    uniqueID: 1182246185
+    locked: 0
+  - name: Card
+    uniqueID: 4195182141
+    locked: 0
+  - name: BoardGame
+    uniqueID: 1288668589
+    locked: 0
+  - name: UI
+    uniqueID: 1593384633
+    locked: 0
   m_RenderingLayers:
   - Default

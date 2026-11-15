@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using UnityEditor.Media;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
-using UnityEngine.Rendering.Universal;
 
 public class CoreHealth : MonoBehaviour
 {
@@ -19,9 +14,12 @@ public class CoreHealth : MonoBehaviour
     public event Action<BattleSide, int, int> OnHpChanged; 
     public event Action<BattleSide> OnCoreDestroyed;
 
+    private bool isDestroyed;
+
     private void Awake()
     {
-        currentHp = maxHp;
+        maxHp = Mathf.Max(1, maxHp);
+        currentHp = Mathf.Clamp(currentHp <= 0 ? maxHp : currentHp, 0, maxHp);
     }
 
     private void Start()
@@ -39,8 +37,9 @@ public class CoreHealth : MonoBehaviour
 
         OnHpChanged?.Invoke(owner, currentHp, maxHp);
 
-        if(currentHp < 0)
+        if (currentHp <= 0 && !isDestroyed)
         {
+            isDestroyed = true;
             Debug.Log($"Core of {owner} destroyed!");
             OnCoreDestroyed?.Invoke(owner);
         }
