@@ -95,15 +95,7 @@ public class ElementEnergySystem : MonoBehaviour
     {
         foreach (ElementType element in Enum.GetValues(typeof(ElementType)))
         {
-            bool exists = false;
-
-            foreach(ElementEnergyAmount energyData in energies)
-            {
-                exists = true;
-                break;
-            }
-
-            if (!exists)
+            if (FindEnergyData(element) == null)
             {
                 energies.Add(new ElementEnergyAmount
                 {

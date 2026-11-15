@@ -11,6 +11,21 @@ public class  ElementMark
     public List<int> stackDuration = new();
 
     public int StackCount => stackDuration.Count;
+    public int MinimumDuration
+    {
+        get
+        {
+            if (stackDuration.Count == 0) return 0;
+
+            int minimum = stackDuration[0];
+            for (int i = 1; i < stackDuration.Count; i++)
+            {
+                if (stackDuration[i] < minimum) minimum = stackDuration[i];
+            }
+
+            return minimum;
+        }
+    }
 
     public ElementMark(ElementType element, int duration)
     {
@@ -18,40 +33,34 @@ public class  ElementMark
         stackDuration.Add(duration);
     }
 
-    public void AddStackOrRefreshOldest(int maxStark, int duration)
+    public void AddStackOrRefreshOldest(int maxStack, int duration)
     {
-        if(stackDuration.Count < maxStark)
+        if (stackDuration.Count < maxStack)
         {
             stackDuration.Add(duration);
             return;
         }
 
-        int oldesIndex = 0;
-        int lowestDuration = stackDuration[0];
-
-        for (int i = 1; i < stackDuration.Count; i++)
-        {
-            lowestDuration = stackDuration[i];
-            oldesIndex = i;
-        }
-
-        stackDuration[oldesIndex] = duration;
+        int oldestIndex = FindOldestStackIndex();
+        stackDuration[oldestIndex] = duration;
     }
 
     public void RemoveOneStack()
     {
         if(stackDuration.Count <= 0) return;
 
-        int oldesIndex = 0;
-        int lowestDuration = stackDuration[0];
+        stackDuration.RemoveAt(FindOldestStackIndex());
+    }
 
-        for(int i = 1; i < stackDuration.Count; i++)
+    private int FindOldestStackIndex()
+    {
+        int oldestIndex = 0;
+        for (int i = 1; i < stackDuration.Count; i++)
         {
-            lowestDuration = stackDuration[i];
-            oldesIndex = i;
+            if (stackDuration[i] < stackDuration[oldestIndex]) oldestIndex = i;
         }
 
-        stackDuration.RemoveAt(oldesIndex);
+        return oldestIndex;
     }
 
     public void TickDuration()
@@ -102,6 +111,7 @@ public class ElementMarkContainer : MonoBehaviour
     public event Action<MarkReactionResult> OnReactionTriggered;
 
     public IReadOnlyList<ElementMark> ActiveMarks => activeMarks;
+    public BattleSide Owner => owner;
 
     private void OnEnable()
     {
