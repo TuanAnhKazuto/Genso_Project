@@ -1,14 +1,14 @@
-﻿public static class ElementRelation
+public static class ElementRelation
 {
     public static ElementType GetGeneratedElement(ElementType element)
     {
         return element switch
         {
-            ElementType.Metal => ElementType.Water,
-            ElementType.Water => ElementType.Wood,
-            ElementType.Wood => ElementType.Fire,
-            ElementType.Fire => ElementType.Earth,
-            ElementType.Earth => ElementType.Metal,
+            ElementType.Metallic => ElementType.Aqueous,
+            ElementType.Aqueous => ElementType.Botanical,
+            ElementType.Botanical => ElementType.Thermal,
+            ElementType.Thermal => ElementType.Telluric,
+            ElementType.Telluric => ElementType.Metallic,
             _ => element
         };
     }
@@ -17,10 +17,10 @@
     {
         return element switch
         {
-            ElementType.Metal => ElementType.Wood,
-            ElementType.Wood => ElementType.Earth,
-            ElementType.Earth => ElementType.Water,
-            ElementType.Water => ElementType.Fire,
+            ElementType.Metallic => ElementType.Botanical,
+            ElementType.Botanical => ElementType.Telluric,
+            ElementType.Telluric => ElementType.Aqueous,
+            ElementType.Aqueous => ElementType.Thermal,
             _ => element
         };
     }

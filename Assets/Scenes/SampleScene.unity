@@ -325,7 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 48477293}
   m_Layer: 5
-  m_Name: Metal
+  m_Name: Metallic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,7 +393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 71598192}
   m_Layer: 5
-  m_Name: Wood
+  m_Name: Botanical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -781,7 +781,7 @@ GameObject:
   m_Component:
   - component: {fileID: 90464671}
   m_Layer: 5
-  m_Name: Fire
+  m_Name: Thermal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1083,7 +1083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 267796746}
   m_Layer: 5
-  m_Name: Metal
+  m_Name: Metallic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1564,7 +1564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424463355}
   m_Layer: 5
-  m_Name: Earth
+  m_Name: Telluric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3196,7 +3196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 670467100}
   m_Layer: 5
-  m_Name: Earth
+  m_Name: Telluric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3613,27 +3613,27 @@ MonoBehaviour:
   omegaCore: {fileID: 1431163580}
   omegaMarkContainer: {fileID: 1431163582}
   testSkills:
-  - skillName: Metal Test Skill
+  - skillName: Metallic Test Skill
     element: 0
     ecCost: 2
     damage: 100
     reactionDamage: 50
-  - skillName: Wood Test Skill
+  - skillName: Botanical Test Skill
     element: 1
     ecCost: 2
     damage: 100
     reactionDamage: 50
-  - skillName: Water Test Skill
+  - skillName: Aqueous Test Skill
     element: 2
     ecCost: 2
     damage: 100
     reactionDamage: 50
-  - skillName: Fire Test Skill
+  - skillName: Thermal Test Skill
     element: 3
     ecCost: 2
     damage: 100
     reactionDamage: 50
-  - skillName: Earth Test Skill
+  - skillName: Telluric Test Skill
     element: 4
     ecCost: 2
     damage: 100
@@ -4017,7 +4017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 792781677}
   m_Layer: 5
-  m_Name: Earth
+  m_Name: Telluric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4816,7 +4816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 906821100}
   m_Layer: 5
-  m_Name: Fire
+  m_Name: Thermal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5243,7 +5243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1046466722}
   m_Layer: 5
-  m_Name: Water
+  m_Name: Aqueous
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5823,7 +5823,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1143617745}
   m_Layer: 5
-  m_Name: Fire
+  m_Name: Thermal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6490,7 +6490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1204625127}
   m_Layer: 5
-  m_Name: Wood
+  m_Name: Botanical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8205,7 +8205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1541609713}
   m_Layer: 5
-  m_Name: Water
+  m_Name: Aqueous
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8606,7 +8606,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1612676455}
   m_Layer: 5
-  m_Name: Metal
+  m_Name: Metallic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8643,7 +8643,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1662940352}
   m_Layer: 5
-  m_Name: Water
+  m_Name: Aqueous
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9625,7 +9625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2114459144}
   m_Layer: 5
-  m_Name: Wood
+  m_Name: Botanical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

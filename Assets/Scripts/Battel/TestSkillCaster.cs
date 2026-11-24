@@ -12,8 +12,8 @@ public class TestSkillCaster : MonoBehaviour
     [SerializeField] private ElementMarkContainer omegaMarkContainer;
     [SerializeField] private int reactionDamage = 50;
 
-    [Header("Test Fire Attack")]
-    [SerializeField] private ElementType costElement = ElementType.Fire;
+    [Header("Test Thermal Attack")]
+    [SerializeField] private ElementType costElement = ElementType.Thermal;
     [SerializeField] private int ecCost = 2;
     [SerializeField] private int damage = 100;
 
@@ -66,6 +66,6 @@ public class TestSkillCaster : MonoBehaviour
             }
         }
 
-        Debug.Log($"Alpha dùng Test Fire Skill: -{ecCost} {costElement} EC, gây {damage} damage.");
+        Debug.Log($"Alpha dùng Test Thermal Skill: -{ecCost} {costElement} EC, gây {damage} damage.");
     }
 }

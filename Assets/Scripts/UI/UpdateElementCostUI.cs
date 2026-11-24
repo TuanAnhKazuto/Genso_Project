@@ -20,19 +20,19 @@ public class UpdateElementCostUI : MonoBehaviour
         {
             switch (energyData.element)
             {
-                case ElementType.Metal:
+                case ElementType.Metallic:
                     metalCostTxt.text = $"{energyData.amount}";
                     break;
-                case ElementType.Wood:
+                case ElementType.Botanical:
                     woodCostTxt.text = $"{energyData.amount}";
                     break;
-                case ElementType.Water:
+                case ElementType.Aqueous:
                     waterCostTxt.text = $"{energyData.amount}";
                     break;
-                case ElementType.Fire:
+                case ElementType.Thermal:
                     fireCostTxt.text = $"{energyData.amount}";
                     break;
-                case ElementType.Earth:
+                case ElementType.Telluric:
                     earthCostTxt.text = $"{energyData.amount}";
                     break;
             }
@@ -50,19 +50,19 @@ public class UpdateElementCostUI : MonoBehaviour
         {
             switch (energyData.element)
             {
-                case ElementType.Metal:
+                case ElementType.Metallic:
                     metalCostTxt.text = $"{energyData.amount}";
                     break;
-                case ElementType.Wood:
+                case ElementType.Botanical:
                     woodCostTxt.text = $"{energyData.amount}";
                     break;
-                case ElementType.Water:
+                case ElementType.Aqueous:
                     waterCostTxt.text = $"{energyData.amount}";
                     break;
-                case ElementType.Fire:
+                case ElementType.Thermal:
                     fireCostTxt.text = $"{energyData.amount}";
                     break;
-                case ElementType.Earth:
+                case ElementType.Telluric:
                     earthCostTxt.text = $"{energyData.amount}";
                     break;
             }

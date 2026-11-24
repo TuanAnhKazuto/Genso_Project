@@ -31,8 +31,8 @@ public class ElementSkillTester : MonoBehaviour
         {
             new()
             {
-                skillName = "Metal Test Skill",
-                element = ElementType.Metal,
+                skillName = "Metallic Test Skill",
+                element = ElementType.Metallic,
                 ecCost = 2,
                 damage = 100,
                 reactionDamage = 50,
@@ -40,8 +40,8 @@ public class ElementSkillTester : MonoBehaviour
 
             new()
             {
-                skillName = "Wood Test Skill",
-                element = ElementType.Wood,
+                skillName = "Botanical Test Skill",
+                element = ElementType.Botanical,
                 ecCost = 2,
                 damage = 100,
                 reactionDamage = 50,
@@ -49,8 +49,8 @@ public class ElementSkillTester : MonoBehaviour
 
             new()
             {
-                skillName = "Water Test Skill",
-                element = ElementType.Water,
+                skillName = "Aqueous Test Skill",
+                element = ElementType.Aqueous,
                 ecCost = 2,
                 damage = 100,
                 reactionDamage = 50,
@@ -58,8 +58,8 @@ public class ElementSkillTester : MonoBehaviour
 
             new()
             {
-                skillName = "Fire Test Skill",
-                element = ElementType.Fire,
+                skillName = "Thermal Test Skill",
+                element = ElementType.Thermal,
                 ecCost = 2,
                 damage = 100,
                 reactionDamage = 50,
@@ -67,8 +67,8 @@ public class ElementSkillTester : MonoBehaviour
 
             new()
             {
-                skillName = "Earth Test Skill",
-                element = ElementType.Earth,
+                skillName = "Telluric Test Skill",
+                element = ElementType.Telluric,
                 ecCost = 2,
                 damage = 100,
                 reactionDamage = 50,

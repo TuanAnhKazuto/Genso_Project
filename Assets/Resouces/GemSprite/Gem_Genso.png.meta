@@ -112,7 +112,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Metal
+      name: Metallic
       rect:
         serializedVersion: 2
         x: 32
@@ -134,7 +134,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Water
+      name: Aqueous
       rect:
         serializedVersion: 2
         x: 152
@@ -156,7 +156,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wood
+      name: Botanical
       rect:
         serializedVersion: 2
         x: 269
@@ -178,7 +178,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fire
+      name: Thermal
       rect:
         serializedVersion: 2
         x: 390
@@ -200,7 +200,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Earth
+      name: Telluric
       rect:
         serializedVersion: 2
         x: 509
@@ -235,11 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Earth: 5251732260080691617
-      Fire: 7971880453743093382
-      Metal: -9134297622425778724
-      Water: -3597893319352942520
-      Wood: 8562194996480056355
+      Telluric: 5251732260080691617
+      Thermal: 7971880453743093382
+      Metallic: -9134297622425778724
+      Aqueous: -3597893319352942520
+      Botanical: 8562194996480056355
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

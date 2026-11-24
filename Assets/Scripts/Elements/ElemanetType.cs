@@ -1,8 +1,8 @@
 public enum ElementType
 {
-    Metal,
-    Wood,
-    Water,
-    Fire,
-    Earth
+    Metallic,
+    Botanical,
+    Aqueous,
+    Thermal,
+    Telluric
 }
